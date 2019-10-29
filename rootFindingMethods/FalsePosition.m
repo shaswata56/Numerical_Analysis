@@ -1,19 +1,3 @@
-function false_position()
-    f = @(x) x^3 - 2*x^2 - 4
-    a = 2
-    b = 3
-    approximation = 1e-6
-    eps = approximation;
-    fprintf('\n\n')
-    [sol, iter] = FalsePosition(f, a, b, eps);
-    if iter > 0
-        fprintf('Number of funtion calls: %d\n', iter);
-        fprintf('A solution is: %f\n', sol);
-    else
-        fprintf('Abort execution!\n');
-    end
-end
-
 function [sol, iter] = FalsePosition(f, a, b, eps)
     fprintf("%s\t%s\t\t\t%s\t\t\t%s\n", "Iteration", "a", "b", "root");
     iter = 0;
