@@ -1,15 +1,3 @@
-function gauss_seidel()
-    A = [5 -2 3 0;-3 9 1 -2;2 -1 -7 1; 4 3 -5 7]
-    b = [-1 2 3 0.5]'
-    [x, itr] = GaussSeidel(A, b);
-    if itr > 0
-        fprintf('Number of iterations: %d\n', itr);
-        fprintf('Solution ');x
-    else
-		fprintf('Abort execution!\n');
-    end
-end
-
 function [x, itr] = GaussSeidel(A, b)
     fprintf("%s  %s\n", "Iteration", "root");
     x = [0 0 0 0]';

@@ -1,16 +1,5 @@
-function gauss_jaccobi()
-    A = [5 -2 3 0;-3 9 1 -2;2 -1 -7 1; 4 3 -5 7]
-    b = [-1 2 3 0.5]'
-    [x, itr] = GaussJaccobi(A, b);
-    if itr > 0
-        fprintf('Number of iterations: %d\n', itr);
-        fprintf('Solution ');x
-    else
-		fprintf('Abort execution!\n');
-    endif
-end
-
 function [x, itr] = GaussJaccobi(A, b)
+    fprintf("%s  %s\n", "Iteration", "root");
     x = [0 0 0 0]';
     n = size(x,1);
     normVal = Inf;
@@ -27,6 +16,9 @@ function [x, itr] = GaussJaccobi(A, b)
             x(i) = (1 / A(i,i)) * (b(i) - sigma);
         end
         itr = itr + 1;
+        fprintf("%d", itr);
+        x
+        fprintf("\n")
         normVal = abs(x_old - x);
     end
 end
