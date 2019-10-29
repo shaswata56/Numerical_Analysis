@@ -1,11 +1,10 @@
 function newton_raphson()
 	f = @(x) x^3 - 2*x^2 - 4
-	dfdx = @(x) 3*x^2 - 4*x
-	x0 = 2.5
+	x0 = 2.5;
 	approximation = 1e-6
-    eps = approximation;
-    fprintf('\n\n')
-	[solution, no_iterations] = Newton(f, dfdx, x0, eps);
+	eps = approximation;
+	fprintf('\n\n')
+	[solution, no_iterations] = Newton(f, x0, eps);
 	if no_iterations > 0
 		fprintf('Number of funtion calls: %d\n', no_iterations);
 		fprintf('A solution is: %f\n', solution);
@@ -14,7 +13,12 @@ function newton_raphson()
 	endif
 end
 
-function [solution, no_iterations] = Newton(f, dfdx, x0, eps)
+function [solution, no_iterations] = Newton(f, x0, eps)
+	pkg load symbolic
+	syms n;
+	ff = f(n);
+	dif = diff(ff, n);
+	dfdx = function_handle(dif);
 	fprintf("%s\t%s\n", "Iteration", "root");
 	x = x0;
 	f_value = f(x);
@@ -25,7 +29,7 @@ function [solution, no_iterations] = Newton(f, dfdx, x0, eps)
 		try
 			x = x - (f_value) / dfdx(x);
 		catch
-			fprintf('Error! - derivative zero for x = \n', x);
+			fprintf('Error! - derivative zero for x = %f\n', x);
 			exit(1);
 		end
 		fprintf("%d\t\t%f\n", iteration_counter, x);
