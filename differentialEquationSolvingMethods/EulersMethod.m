@@ -1,10 +1,3 @@
-function euler_method()
-    h = 0.1
-    fprintf("f(x) = -2 * ystar(x) + cos(4 * t(x))\n");
-    f = @(j, l) -2 * j + cos(4 * l);
-    ret = EulersMethod(h, f)
-end
-
 function ret = EulersMethod(h, f)
     t = 0:h:1;
     ystar = zeros(size(t));
